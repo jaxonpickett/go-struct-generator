@@ -3,19 +3,10 @@
     "uri": "/v2/apps",
     "appDefinition": {
         "id": "/nitrotest",
-        "cmd": null,
-        "args": null,
-        "user": null,
-        "env": {},
         "instances": 2,
         "cpus": 0.25,
         "mem": 512,
         "disk": 0,
-        "executor": "",
-        "constraints": [],
-        "uris": [],
-        "fetch": [],
-        "storeUrls": [],
         "ports": [0],
         "requirePorts": false,
         "backoffSeconds": 1,
@@ -23,7 +14,6 @@
         "maxLaunchDelaySeconds": 3600,
         "container": {
             "type": "DOCKER",
-            "volumes": [],
             "docker": {
                 "image": "docker-registry.ems.homedepot.com/nitrogen:blue",
                 "network": "BRIDGE",
@@ -34,7 +24,6 @@
                     "protocol": "tcp"
                 }],
                 "privileged": false,
-                "parameters": [],
                 "forcePullImage": true
             }
         },
@@ -48,14 +37,10 @@
             "maxConsecutiveFailures": 3,
             "ignoreHttp1xx": false
         }],
-        "dependencies": [],
         "upgradeStrategy": {
             "minimumHealthCapacity": 0.5,
             "maximumOverCapacity": 0.5
         },
-        "labels": {},
-        "acceptedResourceRoles": null,
-        "ipAddress": null,
         "version": "2016-04-01T16:48:04.485Z"
     },
     "eventType": "api_post_event",

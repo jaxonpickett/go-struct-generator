@@ -43,7 +43,7 @@ function renderField(key, value){
 	}else if (propType == "number"){
 		return '\t' + key.capFirst() + ' float64 `json:"'+ key + '"`' + '\n';
 	}else if (propType == "boolean"){
-		return '\t' + key.capFirst() + ' boolean `json:"'+ key + '"`' + '\n';
+		return '\t' + key.capFirst() + ' bool `json:"'+ key + '"`' + '\n';
 	}else if (propType == "object"){
 
 		// console.log(parseInt(key, 10));
@@ -87,14 +87,14 @@ function renderField(key, value){
 }
 
 function getChildType(value){
-	if (typeof value == "string"){
-		return "string";
-	}else if(typeof value == "number"){
-		return "float64";
+	if (typeof value == 'string'){
+		return 'string';
+	}else if(typeof value == 'number'){
+		return 'float64';
 	}else if(Array.isArray(value)){
-		return getChildType(value);
+		return '[]' + getChildType(value[0]);
 	}else{
-		return "";
+		return '';
 	}
 }
 
