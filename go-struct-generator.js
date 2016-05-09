@@ -10,6 +10,10 @@ var children = [];
 
 for (i in files) {
 
+	if (!/([^\.]*)\.json/.test(files[i])){
+		continue
+	}
+	
 	var structName = /([^\.]*)\.json/.exec(files[i])[1];
 	structName = structName.capFirst();
 
