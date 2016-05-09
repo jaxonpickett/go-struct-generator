@@ -1,6 +1,7 @@
 # go-struct-generator
 NodeJS script that outputs valid golang structs from arbitrary JSON object strings.
 
+
 Create a new file named `<your_struct_name>.json` in the json_objects/ directory for each json string you'd like to convert:
 
 ```
@@ -132,3 +133,4 @@ The script can generate valid golang structs for nearly any valid JSON object, w
 Also included is a little golang script for validating the output of the go-struct-generator. Just replace the included structs with your own output, replace the value of the raw string `jsontest` with the json string you are attempting to convert, and run `go run GoTester.go`. The script will attempt to Unmarshal the json string into the generated structs, and then Marshal the results back into a json object.  
   
 
+Tested using Node version v0.12.7, results with other versions may vary.
