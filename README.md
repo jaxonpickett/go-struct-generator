@@ -56,7 +56,7 @@ json_objects/randomJson.json:
 }
 ```
 
-Run `node go-struct-generator.js`, and capture the input from the command line or pipe stdout into a new file:
+Run `node go-struct-generator.js` and capture the output from the command line, or pipe directly into a golang file (`node go-struct-generator.js >> myStructs.go`):
 
 ```
 type RandomJson struct {
