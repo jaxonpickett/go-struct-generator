@@ -1,49 +1,57 @@
-String.prototype.capFirst = function() {
-    return this.charAt(0).toUpperCase() + this.slice(1);
-}
+/*
+* NodeJS script that outputs valid golang structs from arbitrary JSON object strings.
+* Author: Jaxon Pickett (jaxon_pickett1@homedepot.com)
+* Version: 1.0
+* Date: 5/10/2016
+ */
 
 fs = require('fs');
-
-files = fs.readdirSync('json_objects');
 
 // Array to hold child structs
 var children = [];
 
-for (i in files) {
+function main(){
 
-	// Ignore non-conforming file names
-	if (!/([^\.]*)\.json/.test(files[i])){
-		continue
+	files = fs.readdirSync('json_objects');
+
+	for (i in files) {
+
+		// Ignore non-conforming file names
+		if (!/([^\.]*)\.json/.test(files[i])){
+			continue
+		}
+
+		// The parent struct is named after the file, TitleCased
+		var structName = /([^\.]*)\.json/.exec(files[i])[1];
+		structName = structName.capFirst();
+
+		// Parse file into serialized object. It better be valid JSON!
+		var curJSON = require('./json_objects/' + files[i]);
+
+		// Start the struct def with a header
+		var structDef = 'type ' + structName + ' struct {\n';
+
+		// Append field definitions to the struct def, recursively
+		for (prop in curJSON){
+
+			structDef += renderField(prop, curJSON[prop]);
+		}
+
+		// Close the struct def
+		structDef += '}';
+
+		// Output
+		console.log(structDef);
 	}
 
-	// The parent struct is named after the file, TitleCased
-	var structName = /([^\.]*)\.json/.exec(files[i])[1];
-	structName = structName.capFirst();
+	// Output any child structs that were discovered
+	for (child in children) {
 
-	// Parse file into serialized object. It better be valid JSON!
-	var curJSON = require('./json_objects/' + files[i]);
+		console.log(children[child] + '}');
 
-	// Start the struct def with a header
-	var structDef = 'type ' + structName + ' struct {\n';
-
-	// Append field definitions to the struct def, recursively
-	for (prop in curJSON){
-
-		structDef += renderField(prop, curJSON[prop]);
 	}
 
-	// Close the struct def
-	structDef += '}';
-
-	// Output
-	console.log(structDef);
-}
-
-// Output any child structs that were discovered
-for (child in children) {
-
-	console.log(children[child] + '}');
-
+	return
 }
 
 // Generate field definitions, recursively
@@ -128,5 +136,11 @@ function getChildType(value){
 		return '';
 	}
 }
+
+String.prototype.capFirst = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
+main();
 
 
