@@ -15,7 +15,7 @@
         "container": {
             "type": "DOCKER",
             "docker": {
-                "image": "docker-registry.ems.homedepot.com/nitrogen:blue",
+                "image": "docker-registry.ems.com/nitrogen:blue",
                 "network": "BRIDGE",
                 "portMappings": [{
                     "containerPort": 0,
