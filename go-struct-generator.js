@@ -137,6 +137,7 @@ function getChildType(value){
 	}
 }
 
+// Utility function that capitalizes first letter of a string.
 String.prototype.capFirst = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
