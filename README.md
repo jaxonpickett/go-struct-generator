@@ -24,7 +24,7 @@ json_objects/randomJson.json:
         "container": {
             "type": "DOCKER",
             "docker": {
-                "image": "docker-registry.ems.homedepot.com/nitrogen:blue",
+                "image": "docker-registry.com/nitrogen:blue",
                 "network": "BRIDGE",
                 "portMappings": [{
                     "containerPort": 0,
