@@ -6,62 +6,62 @@ import (
 )
 
 type Tester struct {
-	ClientIp string `json:"clientIp"`
-	Uri string `json:"uri"`
-	AppDefinition AppDefinitionStruct  `json:"appDefinition"`
-	EventType string `json:"eventType"`
-	Timestamp string `json:"timestamp"`
+	ClientIp      string              `json:"clientIp"`
+	Uri           string              `json:"uri"`
+	AppDefinition AppDefinitionStruct `json:"appDefinition"`
+	EventType     string              `json:"eventType"`
+	Timestamp     string              `json:"timestamp"`
 }
 type PortMappingsStruct struct {
 	ContainerPort float64 `json:"containerPort"`
-	HostPort float64 `json:"hostPort"`
-	ServicePort float64 `json:"servicePort"`
-	Protocol string `json:"protocol"`
+	HostPort      float64 `json:"hostPort"`
+	ServicePort   float64 `json:"servicePort"`
+	Protocol      string  `json:"protocol"`
 }
 type DockerStruct struct {
-	Image string `json:"image"`
-	Network string `json:"network"`
-	PortMappings []PortMappingsStruct `json:"portMappings"`
-	Privileged bool `json:"privileged"`
-	ForcePullImage bool `json:"forcePullImage"`
+	Image          string               `json:"image"`
+	Network        string               `json:"network"`
+	PortMappings   []PortMappingsStruct `json:"portMappings"`
+	Privileged     bool                 `json:"privileged"`
+	ForcePullImage bool                 `json:"forcePullImage"`
 }
 type ContainerStruct struct {
-	Type string `json:"type"`
-	Docker DockerStruct  `json:"docker"`
+	Type   string       `json:"type"`
+	Docker DockerStruct `json:"docker"`
 }
 type HealthChecksStruct struct {
-	Path string `json:"path"`
-	Protocol string `json:"protocol"`
-	PortIndex float64 `json:"portIndex"`
-	GracePeriodSeconds float64 `json:"gracePeriodSeconds"`
-	IntervalSeconds float64 `json:"intervalSeconds"`
-	TimeoutSeconds float64 `json:"timeoutSeconds"`
+	Path                   string  `json:"path"`
+	Protocol               string  `json:"protocol"`
+	PortIndex              float64 `json:"portIndex"`
+	GracePeriodSeconds     float64 `json:"gracePeriodSeconds"`
+	IntervalSeconds        float64 `json:"intervalSeconds"`
+	TimeoutSeconds         float64 `json:"timeoutSeconds"`
 	MaxConsecutiveFailures float64 `json:"maxConsecutiveFailures"`
-	IgnoreHttp1xx bool `json:"ignoreHttp1xx"`
+	IgnoreHttp1xx          bool    `json:"ignoreHttp1xx"`
 }
 type UpgradeStrategyStruct struct {
 	MinimumHealthCapacity float64 `json:"minimumHealthCapacity"`
-	MaximumOverCapacity float64 `json:"maximumOverCapacity"`
+	MaximumOverCapacity   float64 `json:"maximumOverCapacity"`
 }
 type AppDefinitionStruct struct {
-	Id string `json:"id"`
-	Instances float64 `json:"instances"`
-	Cpus float64 `json:"cpus"`
-	Mem float64 `json:"mem"`
-	Disk float64 `json:"disk"`
-	Ports []float64 `json:"ports"`
-	RequirePorts bool `json:"requirePorts"`
-	BackoffSeconds float64 `json:"backoffSeconds"`
-	BackoffFactor float64 `json:"backoffFactor"`
-	MaxLaunchDelaySeconds float64 `json:"maxLaunchDelaySeconds"`
-	Container ContainerStruct  `json:"container"`
-	HealthChecks []HealthChecksStruct `json:"healthChecks"`
-	UpgradeStrategy UpgradeStrategyStruct  `json:"upgradeStrategy"`
-	Version string `json:"version"`
+	Id                    string                `json:"id"`
+	Instances             float64               `json:"instances"`
+	Cpus                  float64               `json:"cpus"`
+	Mem                   float64               `json:"mem"`
+	Disk                  float64               `json:"disk"`
+	Ports                 []float64             `json:"ports"`
+	RequirePorts          bool                  `json:"requirePorts"`
+	BackoffSeconds        float64               `json:"backoffSeconds"`
+	BackoffFactor         float64               `json:"backoffFactor"`
+	MaxLaunchDelaySeconds float64               `json:"maxLaunchDelaySeconds"`
+	Container             ContainerStruct       `json:"container"`
+	HealthChecks          []HealthChecksStruct  `json:"healthChecks"`
+	UpgradeStrategy       UpgradeStrategyStruct `json:"upgradeStrategy"`
+	Version               string                `json:"version"`
 }
 
-func main(){
-	
+func main() {
+
 	jsontest := []byte(`{
     "clientIp": "10.74.68.23",
     "uri": "/v2/apps",
@@ -79,7 +79,7 @@ func main(){
         "container": {
             "type": "DOCKER",
             "docker": {
-                "image": "docker-registry.ems.homedepot.com/nitrogen:blue",
+                "image": "docker-registry.ems.com/nitrogen:blue",
                 "network": "BRIDGE",
                 "portMappings": [{
                     "containerPort": 0,
